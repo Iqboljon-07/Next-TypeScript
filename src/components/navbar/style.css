@@ -1,0 +1,19 @@
+.wrapper {
+
+    background-color: rgb(65, 63, 63);
+
+    width: 100%;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+
+}
+
+.wrapper_item:hover {
+    color: cornflowerblue;
+
+
+
+}
