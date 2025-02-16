@@ -5,43 +5,48 @@ import "./style.css";
 
 import { FaUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import useAuth from "@/hooks/useAuth";
+import { User } from "@/interface/User";
+import Loading from "@/components/loading/Loading";
 
 
 function Dashboard() {
-    const router = useRouter();
+  const router = useRouter();
+
+  const { user, login, logout, error, loading, token } = useAuth()
 
 
 
 
-    return (
-        <>
+  return (
+    <>
+
+      {loading ? <Loading /> :
+        <div className="dashboard">
+          <div className="dashboard_item">
+            <h1 className="text-5xl font-bold text-cyan-500">Dashboard</h1>
+            <h2 className="flex items-center gap-2 text-2xl font-medium ">
+              <FaUser /> Welcome {user?.name || "Iqboljon"}
+            </h2>
 
 
-            <div className="dashboard">
-                <div className="dashboard_item">
-                    <h1 className="text-5xl font-bold text-cyan-500">Dashboard</h1>
-                    <h2 className="flex items-center gap-2 text-2xl font-medium ">
-                        <FaUser /> Welcome {`df`}
-                    </h2>
 
 
+            <p className="text-base text-gray-400">
+              You have not yet setup a profile, please add some info
+            </p>
+            <button
+              onClick={() => router.push("/create-profile")}
+              className="w-36 h-10 bg-cyan-500 text-white "
+            >
+              Create Profile
+            </button>
 
 
-                    {/* <p className="text-base text-gray-400">
-                You have not yet setup a profile, please add some info
-              </p>
-              <button
-                onClick={() => router.push("/create-profile")}
-                className="w-36 h-10 bg-cyan-500 text-white "
-              >
-                Create Profile
-              </button> */}
-
-
-                </div>
-            </div>
-        </>
-    );
+          </div>
+        </div>}
+    </>
+  );
 }
 
 export default Dashboard;

@@ -7,25 +7,43 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-function useAuth<T>() {
-  const [user, setUser] = useState<T | User[]>([]);
+function useAuth() {
+  const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+
+  const [token, setToken] = useState<string | null>(null);
+  const [isClient, setIsclient] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsclient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      const token: any = localStorage.getItem("token");
+      if (typeof window !== "undefined" && token) {
+        setToken(token);
+        router.push("/dashboard");
+      }
+    }
+  }, [isClient]);
+  //const token = localStorage.getItem("token");
 
   async function getMe() {
     try {
       setError("");
       let response = await axios.get(`${baseUrl}/auth`, {
         headers: {
-          "Content-Type": "application/json",
+          "x-auth-token": `${localStorage.getItem("token")}`,
         },
       });
 
       console.log(response);
       if (response.status === 200) {
-        setUser(response.data);
+        setUser(response.data as User);
       }
     } catch (err: any) {
       setError(err.message);
@@ -53,20 +71,31 @@ function useAuth<T>() {
       console.log(response);
 
       if (response.status === 200) {
-        setUser(response.data.token);
-        localStorage.setItem("token", response.data.token);
+        if (isClient) {
+          localStorage.setItem("token", response.data.token);
+        }
         router.push("/dashboard");
+        location.reload();
+
         toast.success("Ro'yhatdan o'tdingiz");
       }
     } catch (err: any) {
       setError(err.message);
+      toast.error("Ro'yhatdan o'tishda xatolik");
     } finally {
       setLoading(false);
     }
   }
 
-  function logout() {}
-  return { user, login, logout, error, loading };
+  function logout() {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("token");
+      setToken(null);
+      router.push("/login");
+      toast.success("Tark etdingiz");
+    }
+  }
+  return { user, login, logout, error, loading, token };
 }
 
 export default useAuth;

@@ -1,0 +1,78 @@
+.register {
+    width: 100%;
+    height: 90vh;
+
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+
+
+
+}
+
+.register_item {
+    width: 70%;
+    height: 65vh;
+    margin-top: 60px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.error {
+
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+
+}
+
+.register_item form {
+
+
+    display: flex;
+    flex-direction: column;
+    height: 290px;
+    justify-content: space-between;
+
+
+}
+
+.register_item form input {
+
+    width: 100%;
+    padding: 10px 5px;
+    border: solid 1px rgb(162, 162, 162);
+    border-radius: 5px;
+
+}
+
+.register_item form input:focus {
+
+    border: solid 1px grey;
+
+
+}
+
+.register_item form button {
+
+    width: 100px;
+    padding: 5px 20px;
+    background-color: cornflowerblue;
+    color: #ffffff;
+    text-align: center;
+}
+
+.register_item button:hover {
+
+
+
+    background-color: green;
+
+}
+
+.active {
+    color: blue
+}

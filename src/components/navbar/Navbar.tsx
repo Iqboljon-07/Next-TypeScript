@@ -5,12 +5,15 @@ import { FaCode, FaUser, FaSignOutAlt } from "react-icons/fa";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
+import useAuth from "@/hooks/useAuth";
+
+
 
 function Navbar() {
+    const { logout, token } = useAuth()
+
     const pathname = usePathname();
     const router = useRouter();
-
-
 
 
 
@@ -35,7 +38,7 @@ function Navbar() {
                 </Link>
 
 
-                <div className="flex gap-10">
+                {token ? <div className="flex gap-10">
                     <Link
                         className={`wrapper_item ${pathname === "/posts" ? "active" : ""
                             }`}
@@ -51,12 +54,10 @@ function Navbar() {
                         <FaUser />
                         Dashboard
                     </Link>
-                    <button className="flex items-center gap-1">
+                    <button onClick={logout} className="flex items-center gap-1">
                         <FaSignOutAlt /> Logout
                     </button>
-                </div>
-
-                <div className="flex gap-10">
+                </div> : <div className="flex gap-10">
                     <Link
                         className={`wrapper_item ${pathname === "/register" ? "active" : ""
                             }`}
@@ -72,6 +73,8 @@ function Navbar() {
                         Login
                     </Link>
                 </div>
+                }
+
 
             </div>
         </div>
