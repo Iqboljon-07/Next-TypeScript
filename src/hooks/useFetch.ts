@@ -12,7 +12,11 @@ function useFetch<T>(url: string) {
     try {
       setLoading(true);
       setError(null);
-      let response = await axios.get(`${baseUrl}/${url}`);
+      let response = await axios.get(`${baseUrl}/${url}`, {
+        headers: {
+          "x-auth-token": `${localStorage.getItem("token")}`,
+        },
+      });
       console.log(response.data);
 
       if (response.status === 200) {

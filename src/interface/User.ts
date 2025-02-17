@@ -16,8 +16,21 @@ export interface Developer {
     _id: number | string;
     name: string;
     avatar: string;
-
-    website: string;
-    social: {};
   };
+
+  website: string;
+  social: {};
+  date: string;
+}
+
+export interface UserId extends Developer {
+  date: string;
+
+  skills: [];
+
+  location: string;
+}
+
+export interface MeDashboard extends UserId {
+  bio: string;
 }

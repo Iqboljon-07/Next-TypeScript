@@ -39,7 +39,7 @@ function Developers() {
                                 key={item._id}
                                 className="bg-gray-200 flex items-center px-4 "
                             >
-                                <FaUserCircle className="text-[310px] text-gray-400 " />
+                                <img style={{ borderRadius: "100%" }} src={item?.user?.avatar} alt="" />
 
                                 <div className=" w-full px-10 py-8  flex justify-between items-center ">
                                     <div className="flex flex-col  gap-3">

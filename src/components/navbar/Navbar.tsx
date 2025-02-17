@@ -15,10 +15,10 @@ function Navbar() {
 
     const pathname = usePathname();
     const router = useRouter();
-    // const token = window.localStorage.getItem("token")
 
-    // [token, setToken] = useState<string | null>(null);
-    // const [isClient, setIsclient] = useState<boolean>(false);
+
+    // const[token, setToken] = useState<string | null>(null);
+
 
 
     // useEffect(() => {
@@ -30,18 +30,7 @@ function Navbar() {
     const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
 
-    // useEffect(() => {
-    //     setIsclient(true);
-    // }, []);
-    // useEffect(() => {
-    //     if (isClient) {
-    //         const savedToken: any = window.localStorage.getItem("token");
-    //         if (typeof window !== "undefined" && savedToken) {
-    //             router.push("/dashboard");
-    //             setToken(savedToken);
-    //         }
-    //     }
-    // }, [isClient]);
+
 
 
 

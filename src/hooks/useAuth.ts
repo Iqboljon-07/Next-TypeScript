@@ -55,15 +55,13 @@ function useAuth() {
       console.log(response);
 
       if (response.status === 200) {
-        window.localStorage.setItem("token", response.data.token);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("token", response.data.token);
+        }
 
         router.push("/dashboard");
 
         toast.success("Ro'yhatdan o'tdingiz");
-
-        // setTimeout(() => {
-        //   location.reload();
-        // }, 1000);
       }
     } catch (err: any) {
       setError(err.message);
