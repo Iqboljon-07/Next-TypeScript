@@ -13,7 +13,7 @@ import Loading from "@/components/loading/Loading";
 function Dashboard() {
   const router = useRouter();
 
-  const { user, login, logout, error, loading, token } = useAuth()
+  const { user, loading } = useAuth()
 
 
 

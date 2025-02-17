@@ -25,7 +25,7 @@ const validationSchema = Yup.object({
 function Login() {
     const router = useRouter();
 
-    const { user, login, logout, error, loading } = useAuth()
+    const { login, error, loading } = useAuth()
 
     const OnSubmit = async (values: any) => {
         console.log(values)
