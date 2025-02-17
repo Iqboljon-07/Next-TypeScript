@@ -1,0 +1,53 @@
+main {
+    width: 100%;
+    height: 90vh;
+    margin-top: 70px;
+
+
+    /* background-image: url("https://i.pinimg.com/736x/45/b8/1f/45b81fd17ea2bf366cc9f0260e2120a8.jpg"); */
+
+    background-image: url("../../images/programming.jpg");
+
+    opacity: .40;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main_item {
+    width: 70%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+}
+
+.main_btns {
+
+    display: flex;
+    gap: 20px
+}
+
+.main_btns button {
+
+    width: 100px;
+
+    height: 40px;
+
+
+
+}
+
+.main_btns button:hover {
+
+    background-color: darkcyan;
+
+
+}

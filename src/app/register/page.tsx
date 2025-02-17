@@ -9,6 +9,8 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import useRegister from "@/hooks/useRegister";
+
 
 const validationSchema = Yup.object({
     name: Yup.string()
@@ -31,12 +33,15 @@ const validationSchema = Yup.object({
 });
 
 function Register() {
+    const { loading, register } = useRegister()
 
 
     const OnSubmit = async (values: any) => {
         console.log(values.password);
 
         if (values.password === values.confirmPassword) {
+            await register(values.name, values.email, values.password)
+
 
         } else {
             toast.error("Parollar  to'g'ri emas");
@@ -102,7 +107,7 @@ function Register() {
                                 />
                             </div>
                             <button type="submit" className="btn">
-                                Register
+                                {loading ? <div className="flex items-center justify-center"> <div className="loader"></div> </div> : " Register"}
                             </button>
                         </Form>
                     )}

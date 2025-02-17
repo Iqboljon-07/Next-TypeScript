@@ -1,0 +1,34 @@
+.developers {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    justify-content: center;
+
+}
+
+
+
+.developers_item {
+    width: 70%;
+    height: auto;
+    margin-top: 60px;
+
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    gap: 20px;
+
+}
+
+.dev_profile {
+
+
+    display: grid;
+    grid-template-columns: 100%;
+    grid-auto-rows: 270px;
+    grid-row-gap: 15px;
+
+
+
+}

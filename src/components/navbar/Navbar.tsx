@@ -6,15 +6,33 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 import useAuth from "@/hooks/useAuth";
+import { useEffect, useState } from "react";
 
 
 
 function Navbar() {
-    const { logout, token } = useAuth()
+    const { logout } = useAuth()
 
     const pathname = usePathname();
     const router = useRouter();
+    const token = window.localStorage.getItem("token")
 
+    // const [token, setToken] = useState<string | null>(null);
+    // const [isClient, setIsclient] = useState<boolean>(false);
+
+    // useEffect(() => {
+    //     setIsclient(true);
+    // }, []);
+
+    // useEffect(() => {
+    //     if (isClient) {
+    //         const savedToken: any = window.localStorage.getItem("token");
+    //         if (typeof window !== "undefined" && savedToken) {
+    //             router.push("/dashboard");
+    //             setToken(savedToken);
+    //         }
+    //     }
+    // }, [isClient]);
 
 
 

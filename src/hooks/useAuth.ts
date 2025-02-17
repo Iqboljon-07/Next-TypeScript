@@ -14,22 +14,6 @@ function useAuth() {
 
   const router = useRouter();
 
-  const [token, setToken] = useState<string | null>(null);
-  const [isClient, setIsclient] = useState<boolean>(false);
-
-  useEffect(() => {
-    setIsclient(true);
-  }, []);
-
-  useEffect(() => {
-    if (isClient) {
-      const token: any = localStorage.getItem("token");
-      if (typeof window !== "undefined" && token) {
-        setToken(token);
-        router.push("/dashboard");
-      }
-    }
-  }, [isClient]);
   //const token = localStorage.getItem("token");
 
   async function getMe() {
@@ -71,13 +55,15 @@ function useAuth() {
       console.log(response);
 
       if (response.status === 200) {
-        if (isClient) {
-          localStorage.setItem("token", response.data.token);
-        }
+        window.localStorage.setItem("token", response.data.token);
+
         router.push("/dashboard");
-        location.reload();
 
         toast.success("Ro'yhatdan o'tdingiz");
+
+        // setTimeout(() => {
+        //   location.reload();
+        // }, 1000);
       }
     } catch (err: any) {
       setError(err.message);
@@ -89,13 +75,13 @@ function useAuth() {
 
   function logout() {
     if (typeof window !== "undefined") {
-      localStorage.removeItem("token");
-      setToken(null);
+      window.localStorage.removeItem("token");
+
       router.push("/login");
       toast.success("Tark etdingiz");
     }
   }
-  return { user, login, logout, error, loading, token };
+  return { user, login, logout, error, loading };
 }
 
 export default useAuth;

@@ -6,7 +6,7 @@ import "./style.css";
 import { FaUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
-import { User } from "@/interface/User";
+
 import Loading from "@/components/loading/Loading";
 
 

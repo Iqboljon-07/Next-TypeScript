@@ -72,7 +72,7 @@ function Login() {
                                 />
                             </div>
                             <button type="submit" className="btn">
-                                Login
+                                {loading ? <div className="flex items-center justify-center"> <div className="loader"></div> </div> : " Login"}
                             </button>
                         </Form>
                     )}

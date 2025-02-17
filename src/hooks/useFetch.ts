@@ -12,24 +12,23 @@ function useFetch<T>(url: string) {
     try {
       setLoading(true);
       setError(null);
-      let response = await axios.get(`${baseUrl}/url`);
+      let response = await axios.get(`${baseUrl}/${url}`);
       console.log(response.data);
 
       if (response.status === 200) {
         setData(response.data);
+        return response.data;
       }
     } catch (error: any) {
       setError(error.message);
-      setLoading(false);
     } finally {
       setLoading(false);
-      setError(null);
     }
   }
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [url]);
   return { data, error, loading, refetch: fetchData };
 }
 
