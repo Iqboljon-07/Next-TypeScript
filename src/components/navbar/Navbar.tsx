@@ -15,15 +15,24 @@ function Navbar() {
 
     const pathname = usePathname();
     const router = useRouter();
-    const token = window.localStorage.getItem("token")
+    // const token = window.localStorage.getItem("token")
 
-    // const [token, setToken] = useState<string | null>(null);
+    // [token, setToken] = useState<string | null>(null);
     // const [isClient, setIsclient] = useState<boolean>(false);
+
+
+    // useEffect(() => {
+    //     if (typeof window !== "undefined") {
+    //         setToken(localStorage.getItem("token"));
+    //     }
+    // }, []);
+
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+
 
     // useEffect(() => {
     //     setIsclient(true);
     // }, []);
-
     // useEffect(() => {
     //     if (isClient) {
     //         const savedToken: any = window.localStorage.getItem("token");

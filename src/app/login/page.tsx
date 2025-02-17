@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
 
+
 const validationSchema = Yup.object({
     email: Yup.string()
         .min(4, "Kamida 4 harf qatnashsin")
@@ -24,8 +25,7 @@ const validationSchema = Yup.object({
 
 function Login() {
     const router = useRouter();
-
-    const { login, error, loading } = useAuth()
+    const { login, loading } = useAuth()
 
     const OnSubmit = async (values: any) => {
         console.log(values)

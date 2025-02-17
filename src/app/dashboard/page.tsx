@@ -5,9 +5,10 @@ import "./style.css";
 
 import { FaUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-import useAuth from "@/hooks/useAuth";
+
 
 import Loading from "@/components/loading/Loading";
+import useAuth from "@/hooks/useAuth";
 
 
 function Dashboard() {
