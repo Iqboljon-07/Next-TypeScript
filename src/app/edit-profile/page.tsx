@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./style.css";
 import { FaUser } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
@@ -7,19 +7,26 @@ import { FaTwitter } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { ImLinkedin } from "react-icons/im";
 import { FaInstagram } from "react-icons/fa";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import axios from "axios";
 
 import { toast } from "react-toastify";
-import useCreateProfile from "@/hooks/useCreateProfile";
 
-function CreateProfile() {
-    //   const Select = function (e) {
-    //     let selected = e.target.value;
-    //     if (selected === "2") {
-    //       alert("salom");
-    //     }
-    //   };
+import useFetch from "@/hooks/useFetch";
+import { MeDashboard } from "@/interface/User";
+import useEditProfile from "@/hooks/useEditProfile";
+//GitHubni qabul qilamiz
+
+
+
+function EditProfile() {
+    // const { data } = useFetch<MeDashboard>(`profile/github/:username`)
+    // console.log("dataaaaaaaaa", data)
+
+    const { data: me } = useFetch<MeDashboard>(`profile/me`)
+    console.log("editme", me);
+
+    console.log(me?.company)
 
     const [company, setCompany] = useState<string>("");
     const [location, setLocation] = useState<string>("");
@@ -34,10 +41,40 @@ function CreateProfile() {
     let [linkedin, setLinkedin] = useState<string>("");
     let [instagram, setInstagram] = useState<string>("");
     let [twitter, setTwitter] = useState<string>("");
-    let [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<null>(null);
+    let [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [edit, setEdit] = useState(null);
 
-    const { createProfil } = useCreateProfile()
+    const { editProfil } = useEditProfile()
+
+
+
+
+    useEffect(() => {
+        if (me) {
+            setWebsite(me?.website)
+            setStatus(me?.status || "");
+            setCompany(me?.company || "");
+            setLocation(me?.location || "");
+            setSkills(me?.skills.join(", ") || "");
+            setBio(me?.bio || "");
+            setGitHub(me?.githubusername || "github");
+
+            //Ijtimoiy tarmoqlar
+            setTwitter(me?.social?.twitter || "")
+            setFacebook(me?.social?.facebook || "")
+            setYoutube(me?.social?.youtube || "")
+            setLinkedin(me?.social?.linkedin || "")
+            setInstagram(me?.social?.instagram || "")
+
+
+        }
+
+
+
+
+    }, [me])
+
 
     let onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -59,7 +96,7 @@ function CreateProfile() {
             toast.error("Jadval to'ldirilmagan");
             return null;
         }
-        await createProfil(bio, company, location, githubusername, status, skills, website, youtube, twitter, instagram, linkedin, facebook)
+        await editProfil(bio, company, location, githubusername, status, skills, website, youtube, twitter, instagram, linkedin, facebook)
 
     };
 
@@ -69,11 +106,11 @@ function CreateProfile() {
         <div className="create">
             <div className="create_item">
                 <h1 className="text-5xl font-bold text-cyan-500">
-                    Create Your Profile
+                    Edit Your Profile
                 </h1>
                 <h2 className="flex gap-2 items-center text-2xl font-medium ">
                     <FaUser />
-                    Let's get some information to make your
+                    Add some changes to your profile
                 </h2>
                 <p>* = required field</p>
                 <form onSubmit={onSubmit}>
@@ -242,11 +279,11 @@ function CreateProfile() {
                         <button
                             onClick={(e) => {
                                 e.preventDefault();
-                                router.push("/dashboard");
+                                router.back();
                             }}
                             className="w-36 h-10 bg-gray-300"
                         >
-                            Go Home
+                            Go Back
                         </button>
                     </div>
                 </form>
@@ -255,4 +292,4 @@ function CreateProfile() {
     );
 }
 
-export default CreateProfile;
+export default EditProfile;

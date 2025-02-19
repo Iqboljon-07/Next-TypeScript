@@ -1,14 +1,11 @@
 .dashboard {
 
     width: 100%;
-    height: 90vh;
-    margin-top: 70px;
-
+    height: auto;
+    /* margin-top: 70px; */
+    padding: 70px 0;
     display: flex;
     justify-content: center;
-
-
-
 
 }
 
@@ -16,15 +13,17 @@
     margin-top: 70px;
 
     width: 70%;
-    height: 80vh;
+    height: auto;
+
 
     display: flex;
     flex-direction: column;
-    gap: 15px
+    gap: 25px
 }
 
-.dashboard button:hover {
+.dashboard button.btn:hover {
     background-color: red;
+    opacity: .4
 }
 
 /* HTML: <div class="loader"></div> */
@@ -45,4 +44,52 @@
     to {
         clip-path: inset(0 -1ch 0 0)
     }
+}
+
+.me_wrapper a {
+
+    background-color: rgb(196, 191, 191);
+    opacity: .9;
+}
+
+.credent {
+
+    display: flex;
+    gap: 20px
+}
+
+.credent button {
+
+    padding: 15px 20px;
+    background-color: rgb(196, 191, 191);
+    font-size: large;
+    font-weight: 500;
+}
+
+.credente table {
+    width: 60%;
+    border-collapse: collapse;
+   
+}
+
+
+
+
+.credente table tr th {
+    width: 10px;
+    padding: 20px;
+    background-color: gray;
+    border: solid 3px white;
+    text-align: left;
+
+
+
+
+}
+
+.credente table tr,
+td {
+    width: 10px;
+    padding: 20px;
+
 }

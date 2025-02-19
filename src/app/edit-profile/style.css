@@ -1,0 +1,69 @@
+.create {
+
+    width: 100%;
+    height: auto;
+    margin-top: 70px;
+
+    display: flex;
+    justify-content: center;
+    /* 
+    background-color: lightblue; */
+
+
+}
+
+.create_item {
+
+
+    width: 70%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* background-color: aquamarine; */
+    margin-top: 70px;
+    padding-bottom: 80px;
+}
+
+.dashboard button:hover {
+    background-color: red;
+}
+
+.create_item form {
+
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px
+}
+
+.create_item form select,
+input {
+
+    width: 100%;
+    height: 40px;
+    text-indent: 7px;
+    border: solid 2px grey;
+
+}
+
+
+
+
+.network {
+
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+}
+
+.network input {
+
+
+    padding: 20px 0
+}

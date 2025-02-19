@@ -13,7 +13,7 @@ function Main() {
             <main></main>
             <div className="main_item">
                 <h1 className="text-6xl text-black font-bold">Developer Connector</h1>
-                <h2 className="text-2xl text-black font-bold">
+                <h2 className="text-2xl text-black font-bold text-center">
                     Create a developer profile/portfolio, share posts and get help from
                     other developers
                 </h2>

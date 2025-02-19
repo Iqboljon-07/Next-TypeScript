@@ -4,24 +4,10 @@ import { headers } from "next/headers";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "react-toastify";
-interface ProfileData {
-  bio: string;
-  company: string;
-  location: string;
-  skills: string;
-  github: string;
-  website: string;
-  status: string;
-  twitter: string;
-  facebook: string;
-  youtube: string;
-  linkedin: string;
-  instagram: string;
-}
 
-function useCreateProfile() {
+function useEditProfile() {
   const router = useRouter();
-  async function createProfil(
+  async function editProfil(
     bio: string,
     company: string,
     location: string,
@@ -61,11 +47,10 @@ function useCreateProfile() {
           },
         }
       );
-      if (response.status === 200) {
-        console.log("Createeeeeeee", response.data);
-        router.push("/dashboard");
-        toast.success("Saqlandi");
-      }
+
+      console.log("Editttttt", response.data);
+
+      toast.success("Saqlandi");
     } catch (error: any) {
       console.error(error);
       toast(error.message);
@@ -73,7 +58,7 @@ function useCreateProfile() {
     } finally {
     }
   }
-  return { createProfil };
+  return { editProfil };
 }
 
-export default useCreateProfile;
+export default useEditProfile;

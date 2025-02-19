@@ -79,7 +79,7 @@ function useAuth() {
       toast.success("Tark etdingiz");
     }
   }
-  return { user, login, logout, error, loading };
+  return { user, setUser, login, logout, error, loading };
 }
 
 export default useAuth;

@@ -1,0 +1,43 @@
+.experience {
+
+    width: 100%;
+    height: auto;
+    margin-top: 70px;
+
+    display: flex;
+    justify-content: center;
+
+
+
+
+}
+
+.experience_item {
+
+
+    width: 70%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    margin-top: 70px;
+    padding-bottom: 80px;
+}
+
+
+.experience_item form {
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+}
+
+.experience_item form input {
+    width: 100%;
+    padding: 10px 0;
+    border: solid 2px rgb(162, 162, 162);
+
+}
