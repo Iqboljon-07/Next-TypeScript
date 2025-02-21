@@ -10,6 +10,13 @@ import { FaCheck } from "react-icons/fa";
 import Loading from "@/components/loading/Loading";
 import useFetch from "@/hooks/useFetch";
 import { UserId } from "@/interface/User";
+import { Span } from "next/dist/trace";
+import { FaFacebookSquare } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa";
+import { ImLinkedin } from "react-icons/im";
+import { FaInstagram } from "react-icons/fa";
+import Link from "next/link";
 //import { UserId } from "@/interface/User";
 
 // interface UserId {
@@ -38,10 +45,17 @@ function View() {
     let router = useRouter();
     // let param = useParams();
     // console.log(param);
+    //userId uchun data
     const { user_id } = useParams();
+    //const { user_id: username } = useParams();
+
     const { data: user, loading } = useFetch<UserId>(`profile/user/${user_id}`)
     console.log("Usersssssssssssssss", user);
 
+
+    // //github uchun
+    // const { data: github } = useFetch(`profile/github/${username}`)
+    // console.log("github", github);
 
 
 
@@ -67,10 +81,24 @@ function View() {
                                 {`${user?.status} at ${user?.company}  `}
                             </h1>
                             <h1 className="text-white">{user?.location} </h1>
-                            <VscGlobe className="text-5xl text-white globe " />
-                        </div>
+                            {user?.social && user?.social?.facebook ? (
+                                <div className="flex gap-3 tarmoqlar">
+                                    <FaYoutube onClick={() => location.href = `${user?.social?.youtube}`} />
+                                    <FaTwitter onClick={() => location.href = `${user?.social?.twitter}`} />
+                                    <FaInstagram onClick={() => location.href = `${user?.social?.instagram}`} />
+                                    <ImLinkedin onClick={() => location.href = `${user?.social?.linkedin}`} />
+                                    <FaFacebookSquare onClick={() => { location.href = `${user?.social?.facebook}` }} />
 
-                        <div className="w-full bg-gray-300 h-80  flex flex-col  border-2 border-zinc-400 px-4">
+
+
+
+
+                                </div>
+
+                            ) : <VscGlobe className="text-5xl text-white globe " />}
+                        </div>
+                        {/* //////////////////////////////////////////////////// */}
+                        <div className="w-full bg-gray-300 h-80  flex flex-col  border-1 border-zinc-400 px-4">
                             <div className="w-full h-[50%] border_1 flex items-center justify-center flex-col gap-1">
                                 <h1 className="text-2xl text-cyan-600">Users Bio</h1>
                                 <h1>{user?.bio} </h1>
@@ -86,6 +114,68 @@ function View() {
                                     ))}
                                 </div>
                             </div>
+
+
+
+                        </div>
+                        {/* ///////////////////////////// */}
+                        <div className="exp_edu">
+
+                            <div className="exp_1"><h1 className="text-3xl text-cyan-600 font-bold">Experience</h1>
+
+                                {user?.experience && user?.experience.length ? (
+
+                                    <>
+                                        {user?.experience?.map((value) => (
+                                            <ul className="grid gap-3">
+                                                <li className="font-bold">{value?.company} </li>
+                                                <li>{`${value?.from.slice(0, 10)} - ${value?.to?.slice(0, 10)}   `}</li>
+                                                <li className="flex items-center gap-2 "><h1 className="font-bold">Position:</h1> {value?.title}  </li>
+                                                <li className="flex items-center "><h1 className="font-bold">Location:</h1> { }  </li>
+                                                <li className="flex items-center "><h1 className="font-bold">Description:</h1>  </li>
+
+                                            </ul>
+
+
+
+                                        ))}
+
+                                    </>
+                                ) : <span className="font-bold">No experience credentials</span>}
+
+                            </div>
+                            <div className="edu_1"><h1 className="text-3xl text-cyan-600 font-bold">Education</h1>
+
+
+                                {user?.education && user?.education.length ? (
+
+                                    <>
+                                        {user?.education?.map((value) => (
+                                            <ul className="grid gap-3">
+                                                <li className="font-bold">{value?.school} </li>
+                                                <li>{`${value?.from.slice(0, 10)} - ${value?.to?.slice(0, 10)}   `}</li>
+                                                <li className="flex items-center gap-2 "><h1 className="font-bold">Degree:</h1> {value?.degree}  </li>
+                                                <li className="flex items-center gap-2 "><h1 className="font-bold">Field Of Study:</h1> {value?.fieldofstudy}  </li>
+                                                <li className="flex items-center "><h1 className="font-bold">Description:</h1>  </li>
+
+                                            </ul>
+
+
+
+                                        ))}
+
+                                    </>
+                                ) : <span className="font-bold">No education credentials</span>}
+                            </div>
+                            {/* //////////////////////////////////////////////////// */}
+
+
+
+                        </div>
+
+                        <div className="github">
+                            <h1 className="text-2xl text-cyan-600">Github Repos</h1>
+
                         </div>
                     </div>
                 </div>

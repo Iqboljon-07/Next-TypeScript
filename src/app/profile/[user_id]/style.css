@@ -1,6 +1,6 @@
 .view {
     width: 100%;
-    height: 200vh;
+    height: 300vh;
 
     display: flex;
     justify-content: center;
@@ -33,4 +33,45 @@
 
     border-bottom: solid 2px rgb(156, 156, 156);
 
+}
+
+.exp_edu {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(2, 48%);
+
+    /* padding: 20px 0; */
+
+    justify-content: space-between;
+}
+
+.exp_1 {
+
+    border: 1px solid gray;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px
+}
+
+.edu_1 {
+
+    border: 1px solid gray;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px
+}
+
+.tarmoqlar svg {
+    font-size: 34px;
+    color: #ffffff
+}
+
+.github {
+
+    width: 100%;
+    height: 400px;
+    background-color: aqua;
 }

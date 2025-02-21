@@ -12,7 +12,7 @@ export interface Developer {
   githubusername: string;
   education: [
     {
-      _id: string | number;
+      _id: string;
       current: boolean;
       school: string;
       degree: string;
@@ -20,6 +20,7 @@ export interface Developer {
       from: string;
       to: string;
       programm: string;
+      length: number;
     }
   ];
   experience: [
@@ -27,14 +28,14 @@ export interface Developer {
       company: string;
       title: string;
       current: boolean;
-      from: string | number;
+      from: string;
       to: string;
       _id: string;
     }
   ];
   skills: [];
   user: {
-    _id: number | string;
+    _id: string;
     name: string;
     avatar: string;
   };
@@ -59,5 +60,6 @@ export interface UserId extends Developer {
 }
 
 export interface MeDashboard extends UserId {
+  _v: number;
   bio: string;
 }

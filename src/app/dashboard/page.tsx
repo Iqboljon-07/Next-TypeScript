@@ -4,7 +4,7 @@ import "./style.css";
 
 
 import { FaUser } from "react-icons/fa";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { LuUserMinus } from "react-icons/lu";
 
 import Loading from "@/components/loading/Loading";
@@ -19,30 +19,31 @@ import { useState } from "react";
 import axios from "axios";
 import { baseUrl } from "@/utils/app";
 import { toast } from "react-toastify";
+import useDeleteProfile from "@/hooks/useDeleteProfile";
+import { RiUserLocationLine } from "react-icons/ri";
 
 
-function Dashboard<T>() {
+function Dashboard() {
   const router = useRouter();
   //usefetchdan olindi
   const { user, loading } = useAuth()
   console.log("user", user)
 
   //usefetchdan olindi
-  const { data: me, setData } = useFetch<MeDashboard>(`profile/me`)
+  const { data: me, setData, refetch } = useFetch<MeDashboard>(`profile/me`)
+
+  // const { deleteProfile } = useDeleteProfile(`profile/experience/${experience_id} `)
 
   console.log("me", me);
+  console.log("user", user);
 
-
-
-  console.log(user);
-
-
-  async function DeleteExperience(exp_id: string) {
+  //deleteexperience
+  async function DeleteExperience(exp: any) {
 
     try {
 
 
-      const response = await axios.delete(`${baseUrl}/profile/experience/${exp_id}`, {
+      const response = await axios.delete(`${baseUrl}/profile/experience/${exp._id} `, {
         headers: {
           'x-auth-token': localStorage.getItem('token')
         }
@@ -53,18 +54,83 @@ function Dashboard<T>() {
 
       if (response.status === 200) {
         toast.info("Message deleted")
-        // setData(me?.filter((val: any) => val.id !== exp_id))
+
+        refetch()
+
 
       }
 
 
-    } catch (err) {
+    } catch (err: any) {
 
-      toast.error("Failed to delete message")
+      console.log(err, "errrrrrrorrrr");
+      (err.message)
     }
 
   }
 
+  //deleteeducation
+  async function DeleteEducation(edu_id: any) {
+    console.log(edu_id);
+
+
+    try {
+
+      const response = await axios.delete(`${baseUrl}/profile/education/${edu_id}`, {
+        headers: {
+
+          'x-auth-token': localStorage.getItem("token")
+        }
+
+      });
+      console.log(response, "uytresaASDFGHJKL");
+      if (response.status === 200) {
+        toast.info("Education deleted")
+        refetch()
+
+      }
+
+    } catch (err: any) {
+      toast.error("Failed to delete education")
+      console.log(err);
+
+    }
+
+
+  }
+
+  //uddeletaccount
+  async function DeleteAccount() {
+    const result = confirm(" Account o'chirilsinmi");
+    if (result) {
+
+
+      try {
+        const response = await axios.delete(`${baseUrl}/profile`, {
+          headers: {
+            'x-auth-token': localStorage.getItem('token')
+          }
+        })
+        console.log(response);
+        if (response.status === 200) {
+
+          toast.info("Account deleted")
+          router.push("/login")
+
+          localStorage.removeItem("token")
+
+        }
+
+      } catch (err) {
+        toast.error("Failed to delete account")
+      }
+    }
+    else {
+      console.log("Account o'chirilmadi")
+    }
+
+
+  }
 
 
 
@@ -112,14 +178,14 @@ function Dashboard<T>() {
 
 
                       {
-                        me?.experience?.map((experience) => (
+                        me?.experience?.map((experience: any) => (
                           <tr key={experience._id}>
 
 
                             <td>{experience?.company}</td>
                             <td> {experience?.title}</td>
-                            <td> {`${experience?.from.toString().slice(0, 10)} - ${experience?.to ? experience.to.toString().slice(0, 10) : "Now"}`}</td>
-                            <td onClick={() => DeleteExperience(experience._id)} className="text-red-600 text-2xl"><MdDelete /></td>
+                            <td> {`${experience?.from.toString().slice(0, 10)} - ${experience?.to ? experience.to.toString().slice(0, 10) : "Now"} `}</td>
+                            <td onClick={() => DeleteExperience(experience)} className="text-red-600 text-2xl"><MdDelete /></td>
                           </tr>
                         ))
                       }
@@ -145,14 +211,14 @@ function Dashboard<T>() {
 
                       {
 
-                        me?.education?.map((education) => (
+                        me?.education?.map((education: any) => (
                           <tr key={education._id}>
 
 
                             <td>{education?.school}</td>
                             <td> {education?.degree}</td>
-                            <td> {`${education?.from.toString().slice(0, 10)} - ${education?.to?.toString()?.slice(0, 10)}`}</td>
-                            <td className="text-red-600 text-2xl"><MdDelete /></td>
+                            <td> {`${education?.from.toString().slice(0, 10)} - ${education?.to?.toString()?.slice(0, 10)} `}</td>
+                            <td onClick={() => DeleteEducation(education._id)} className="text-red-600 text-2xl"><MdDelete /></td>
                           </tr>
                         ))
                       }
@@ -160,7 +226,7 @@ function Dashboard<T>() {
                     </thead>
                   </table>
                 </div>
-                <button className="bg-[red] w-48 h-10 text-white flex items-center justify-center gap-2 btn "><LuUserMinus className="text-2xl" /> Delete My Account</button>
+                <button onClick={() => DeleteAccount()} className="bg-[red] w-48 h-10 text-white flex items-center justify-center gap-2 btn "><LuUserMinus className="text-2xl" /> Delete My Account</button>
               </>
 
             ) : (

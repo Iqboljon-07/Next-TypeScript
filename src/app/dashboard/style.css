@@ -3,14 +3,14 @@
     width: 100%;
     height: auto;
     /* margin-top: 70px; */
-    padding: 70px 0;
+    padding: 140px 0;
     display: flex;
     justify-content: center;
 
 }
 
 .dashboard_item {
-    margin-top: 70px;
+
 
     width: 70%;
     height: auto;
@@ -69,7 +69,7 @@
 .credente table {
     width: 60%;
     border-collapse: collapse;
-   
+
 }
 
 

@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 function useFetch<T>(url: string) {
-  const [data, setData] = useState<T | null >(null);
+  const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<string | null>("");
   const [loading, setLoading] = useState<boolean>(false);
 
