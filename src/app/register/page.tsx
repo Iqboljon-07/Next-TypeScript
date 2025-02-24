@@ -107,7 +107,7 @@ function Register() {
                                 />
                             </div>
                             <button type="submit" className="btn">
-                                {loading ? <div className="flex items-center justify-center"> <div className="loader"></div> </div> : " Register"}
+                                {loading ? <span>Loading</span> : " Login"}
                             </button>
                         </Form>
                     )}

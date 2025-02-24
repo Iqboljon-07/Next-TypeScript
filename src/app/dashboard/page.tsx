@@ -27,15 +27,19 @@ function Dashboard() {
   const router = useRouter();
   //usefetchdan olindi
   const { user, loading } = useAuth()
-  console.log("user", user)
+  console.log("auth", user)
 
   //usefetchdan olindi
   const { data: me, setData, refetch } = useFetch<MeDashboard>(`profile/me`)
+  console.log("me", me);
+  const { data: men, } = useFetch<MeDashboard>(`profile`)
+  console.log(men, "men");
+
 
   // const { deleteProfile } = useDeleteProfile(`profile/experience/${experience_id} `)
 
-  console.log("me", me);
-  console.log("user", user);
+
+
 
   //deleteexperience
   async function DeleteExperience(exp: any) {
@@ -170,7 +174,7 @@ function Dashboard() {
                       <tr>
                         <th>Company</th>
                         <th>Title</th>
-                        <th><pre>Years       </pre></th>
+                        <th><pre>Years               </pre></th>
                         <th></th>
 
                       </tr>
@@ -184,7 +188,7 @@ function Dashboard() {
 
                             <td>{experience?.company}</td>
                             <td> {experience?.title}</td>
-                            <td> {`${experience?.from.toString().slice(0, 10)} - ${experience?.to ? experience.to.toString().slice(0, 10) : "Now"} `}</td>
+                            <td> {` ${new Date(experience?.from).toLocaleDateString()} - ${experience?.to ? new Date(experience.to).toLocaleDateString() : "Now"} `}</td>
                             <td onClick={() => DeleteExperience(experience)} className="text-red-600 text-2xl"><MdDelete /></td>
                           </tr>
                         ))
@@ -217,7 +221,7 @@ function Dashboard() {
 
                             <td>{education?.school}</td>
                             <td> {education?.degree}</td>
-                            <td> {`${education?.from.toString().slice(0, 10)} - ${education?.to?.toString()?.slice(0, 10)} `}</td>
+                            <td> {`${new Date(education?.from).toLocaleDateString()} - ${new Date(education?.to).toLocaleDateString()} `}</td>
                             <td onClick={() => DeleteEducation(education._id)} className="text-red-600 text-2xl"><MdDelete /></td>
                           </tr>
                         ))

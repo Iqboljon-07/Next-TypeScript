@@ -60,6 +60,7 @@ function EditProfile() {
             setBio(me?.bio || "");
             setGitHub(me?.githubusername || "github");
 
+
             //Ijtimoiy tarmoqlar
             setTwitter(me?.social?.twitter || "")
             setFacebook(me?.social?.facebook || "")

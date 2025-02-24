@@ -1,6 +1,10 @@
 "use client";
 export interface User {
   name: string;
+  _id: string;
+  avatar: string;
+  email: string;
+  date: string;
 }
 
 export interface Developer {

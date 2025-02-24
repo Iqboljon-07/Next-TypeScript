@@ -10,7 +10,7 @@ function Main() {
 
     return (
         <>
-            <main></main>
+            <main ></main>
             <div className="main_item">
                 <h1 className="text-6xl text-black font-bold">Developer Connector</h1>
                 <h2 className="text-2xl text-black font-bold text-center">
@@ -20,11 +20,11 @@ function Main() {
                 <div className="main_btns ">
                     <button
                         onClick={() => route.push("/register")}
-                        className="bg-sky-400"
+                        className="bg-sky-400 py-2 px-6 "
                     >
                         Sign Up
                     </button>
-                    <button onClick={() => route.push("/login")} className="bg-white">
+                    <button onClick={() => route.push("/login")} className="bg-white max-w-auto px-6 py-2">
                         Login
                     </button>
                 </div>

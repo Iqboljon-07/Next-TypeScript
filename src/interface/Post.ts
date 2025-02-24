@@ -1,6 +1,15 @@
 export type Post = {
   avatar: string;
-  coments: [];
+  comments: [
+    {
+      avatar: string;
+      name: string;
+      _id: string;
+      text: string;
+      user: string;
+      date: string;
+    }
+  ];
   date: string;
   likes: [];
   name: string;

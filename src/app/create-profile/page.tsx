@@ -12,7 +12,7 @@ import axios from "axios";
 
 import { toast } from "react-toastify";
 import useCreateProfile from "@/hooks/useCreateProfile";
-
+import { useEffect } from "react";
 function CreateProfile() {
     //   const Select = function (e) {
     //     let selected = e.target.value;
@@ -38,9 +38,32 @@ function CreateProfile() {
     const [error, setError] = useState<null>(null);
 
     const { createProfil } = useCreateProfile()
+    console.log(githubusername)
+
+
+
+    useEffect(() => {
+        console.log("GitHub username:", githubusername);
+    }, [githubusername]);
+
+    console.log({
+        bio,
+        company,
+        location,
+        githubusername,  // Shu yerda tekshirib ko'ring
+        status,
+        skills,
+        website,
+        youtube,
+        twitter,
+        instagram,
+        linkedin,
+        facebook
+    });
 
     let onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
         if (
             !company.trim() ||
             !location.trim() ||
