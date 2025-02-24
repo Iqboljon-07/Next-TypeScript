@@ -17,6 +17,7 @@ import { FaYoutube } from "react-icons/fa";
 import { ImLinkedin } from "react-icons/im";
 import { FaInstagram } from "react-icons/fa";
 import Link from "next/link";
+import { GitHub } from "@/interface/Github";
 //import { UserId } from "@/interface/User";
 
 // interface UserId {
@@ -51,11 +52,14 @@ function View() {
 
     const { data: user, loading } = useFetch<UserId>(`profile/user/${user_id}`)
     console.log("Usersssssssssssssss", user);
+    console.log(user?.githubusername.toString().slice(19), "githubusername");
 
 
-    // //github uchun
-    // const { data: github } = useFetch(`profile/github/${username}`)
-    // console.log("github", github);
+
+    //github uchun
+    // const { data: github } = useFetch(`profile/github/${user?.githubusername?.toString().slice(19)}`)
+    const { data: github } = useFetch<GitHub[]>(`profile/github/${user?.githubusername}`)
+    console.log("github", github);
 
 
 
@@ -173,8 +177,29 @@ function View() {
 
                         </div>
 
-                        <div className="github">
-                            <h1 className="text-2xl text-cyan-600">Github Repos</h1>
+                        <div className="github grid gap-4">
+                            <h1 className="text-2xl text-cyan-600 font-bold">Github Repos</h1>
+                            <div className="flex flex-col grid-cols-1 grid-rows-5 gap-5">
+
+                                {github?.map((val) => (
+
+                                    <div key={val.id} className="border-2 border-solid gray py-10 flex items-center  justify-between px-5 ">
+                                        <div className="text-sm">
+                                            <Link className=" text-cyan-600 text-lg font-bold" href={`${val?.html_url}`} >{val?.name} </Link>
+                                            <p>{val?.description}</p>
+                                        </div>
+                                        <div className="grid text-sm">
+                                            <button className="px-1 py-1 bg-cyan-600 text-white ">Stars:0</button>
+                                            <button className="px-1 py-1 bg-black text-white ">Watchers: 0</button>
+                                            <button className="px-1 py-1 bg-gray-300">Forks: 0</button>
+
+                                        </div>
+                                    </div>
+
+                                ))}
+
+                            </div>
+
 
                         </div>
                     </div>

@@ -57,8 +57,19 @@ function Developers() {
                                         </button>
                                     </div>
 
-                                    <h1 className="text-cyan-500 flex items-center font-medium gap-1 ">
-                                        <FaCheck /> {item.skills}
+                                    <h1 className="text-cyan-500 flex flex-col items-center font-medium gap-1 ">
+
+                                        <div className="flex w-24 flex-col gap-2">
+
+                                            {item.skills.slice(0, 4).map((val, inx) => (
+                                                <div className="grid grid-cols-2 items-center  text-lg gap-1" key={inx}>
+                                                    <FaCheck />
+                                                    <h1>{(val)}</h1>
+                                                </div>
+
+                                            ))}
+                                        </div>
+
                                     </h1>
                                 </div>
                             </div>
